@@ -1,5 +1,5 @@
 {
-    "name": "kly/laravel-onesdk",
+    "name": "karsa/laravel-onesdk",
     "description": "Laravel service provide for onesdk app php SDK",
     "type": "library",
     "require": {
