@@ -21,6 +21,11 @@ class OneSdkServiceProvider extends ServiceProvider
         $this->registerFactoryArticle();
         $this->registerFactoryGallery();
         $this->registerFactoryPhoto();
+
+        $this->mergeConfigFrom(
+            $this->getConfigFile(),
+            'one'
+        );
     }
 
     /**
@@ -74,5 +79,23 @@ class OneSdkServiceProvider extends ServiceProvider
         $this->app->bind('One\Provider\FactoryPhoto', function () {
             return new FactoryPhoto();
         });
+    }
+
+    /**
+     * Bootstrap any package services.
+     * Support for laravel ^5.0
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            $this->getConfigFile() => config_path('one.php'),
+        ], 'config');
+    }
+
+    protected function getConfigFile()
+    {
+        return __DIR__.'/../config/one.php';
     }
 }
